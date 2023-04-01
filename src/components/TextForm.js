@@ -45,6 +45,7 @@ export default function TextForm(props) {
       copyT.select();
       
       navigator.clipboard.writeText(copyT.value);
+      document.getSelection().removeAllRanges();
       props.showAlert("Text Copied to clipboard","success")
     }
 
@@ -56,7 +57,6 @@ export default function TextForm(props) {
 
 
 
-
   const heandaleonchange = (event )=>{
     console.log("On Change");
     setText(event.target.value)
@@ -65,25 +65,25 @@ export default function TextForm(props) {
   return (
     <>
     <div className='container' style={{color:props.mode==='dark'?'white' : 'black'}}>
-      <h1>{props.heading}</h1>
+      <h2 className="mb-4"><small>{props.heading}</small></h2>
       <div className="mb-3">
       
       <textarea className="form-control" onChange={heandaleonchange} style={{backgroundColor: props.mode==='dark'?'#13466e':'white',color:props.mode==='dark'?'white' : 'black'}} value={Text} id="myBox" rows="8" placeholder='Enter Your Text Here'></textarea>
       </div>
-      <button className="btn btn-primary mx-1" onClick={handelUpclick} id="btn1">COnvert To Uppercase</button>
-      <button className="btn btn-primary mx-1" onClick={handelLoclick}>COnvert To Lowercase</button>
-      <button className="btn btn-primary mx-1" onClick={handelSpechclick}>Speech </button>
-      <button className="btn btn-primary mx-1" onClick={handelReversclick}>Revers  </button>
-      <button className="btn btn-primary mx-1" onClick={handelCopyclick}>Copy Text  </button>
-      <button className="btn btn-primary mx-1" onClick={handelExtraSclick}>Remove ExtraSPaces</button>
+      <button disabled={Text.length===0} className="btn btn-primary mx-1 my-1" onClick={handelUpclick} id="btn1">COnvert To Uppercase</button>
+      <button disabled={Text.length===0} className="btn btn-primary mx-1 my-1" onClick={handelLoclick}>COnvert To Lowercase</button>
+      <button disabled={Text.length===0} className="btn btn-primary mx-1 my-1" onClick={handelSpechclick}>Speech </button>
+      <button disabled={Text.length===0} className="btn btn-primary mx-1 my-1" onClick={handelReversclick}>Revers  </button>
+      <button disabled={Text.length===0} className="btn btn-primary mx-1 my-1" onClick={handelCopyclick}>Copy Text  </button>
+      <button disabled={Text.length===0} className="btn btn-primary mx-1 my-1" onClick={handelExtraSclick}>Remove ExtraSPaces</button>
     </div>
 <hr style={{color:props.mode==="dark"?'white':'black'}}  / >
     <div className="container" style={{color:props.mode==='dark'?'white' : 'black'}}>
       <h1>Your Text Summary</h1>
-      <p>{Text.split( " " ).length} words and {Text.length} characters </p>
-      <p>{ 0.008 *  Text.split( " " ).length}Minutes to read </p>
+      <p>{Text.split( " " ).filter((element)=>{return element.length !== 0  }).length} words and {Text.length} characters </p>
+      <p>{ 0.008 *  Text.split( " " ).filter((element)=>{return element.length !== 0}).length}Minutes to read </p>
       <h2>Preview</h2>
-      <p>{Text}</p>
+      <p>{Text.length>0?Text :"Nothig to preview"}</p>
     
     </div>
 

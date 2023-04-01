@@ -76,20 +76,20 @@ import {
         setMode('dark')
         document.body.style.backgroundColor="#13466e"
         showAlert("Dark Mode is Enable","success")
-        document.title="textutil Dark Mode"
-        setInterval(() => {
-          document.title="instal Textutil now"
+        // document.title="textutil Dark Mode"
+        // setInterval(() => {
+        //   document.title="instal Textutil now"
 
-        }, 1000);
-        setInterval(() => {
-          document.title=" TextUlitle is amazing mode"
-        }, 2000);
+        // }, 1000);
+        // setInterval(() => {
+        //   document.title=" TextUlitle is amazing mode"
+        // }, 2000);
       }
       else{
         setMode('light')
         document.body.style.backgroundColor="white"
         showAlert("ligth   Mode is Enable","success")
-        document.title="textutil Light Mode"
+        // document.title="textutil Light Mode"
       }
     }
     return(
@@ -97,10 +97,10 @@ import {
   <BrowserRouter>
   <Navbar  title="TextUtils" home="PBHome" aboutText='About Us' color={color} changeP={changeP} changeB={changeB } changeR={changeR} changeG={changeG} mode={mode} toggleMode={toggleMode}/>
     <Alert alert={alert}/>
-   
+    {/* <TextForm heading="Enter the text to analyze Below" showAlert={showAlert} mode={mode}/> */}
       <Routes>
-        <Route path="/" element={<TextForm heading="Enter the text to analyze Below" showAlert={showAlert} mode={mode}/>} />
-          <Route path="/about" element={ <About/>} />
+        <Route path="/" element={<TextForm heading="Try - TextUtile Word Count | cheracter Count | Remove ExtraSpaces | LowerCase to UpperCase |UpperCase to LowerCase " showAlert={showAlert} mode={mode}/>} />
+          <Route path="/about" element={ <About mode={mode}/>} />
       </Routes>
     </BrowserRouter>
       </>
